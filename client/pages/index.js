@@ -13,7 +13,7 @@ const Home = () => {
     <>
       <div className="bg-gray-200">
         <Head>
-          <title>Rand Athletic Club</title>
+          <title>Andreas Krüger</title>
           <meta name="description" content="An excellent Club" />
           <link
             rel="apple-touch-icon"

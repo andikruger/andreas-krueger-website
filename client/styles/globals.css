@@ -2,246 +2,205 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-	padding: 0;
-	margin: 0;
-	font-family: 'GeneralSans-Variable';
+html {
+  scroll-behavior: smooth;
+  font-family: "Raleway", sans-serif;
+}
+
+.custom-img {
+  /* background-image: url("https://static.wixstatic.com/media/8fa582_cd6f8f7c550c4836888c3396f9268277~mv2.jpg/v1/crop/x_0,y_288,w_1600,h_464/fill/w_980,h_327,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Today%20TT.jpg");  */
+  background-image: url("https://images.unsplash.com/photo-1603455778956-d71832eafa4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80");
+}
+.rac-colour {
+  color: #67162c;
+}
+
+/* create a class that changes text colour to blue on hover  */
+.hover:hover {
+  color: #470819 !important;
+  text-decoration: none;
+}
+
+.dark-hover:hover {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.branding-hover:hover {
+  color: #470819 !important;
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+  text-decoration: none;
 }
 
-* {
-	box-sizing: border-box;
+h1 {
+  font-family: Staatliches;
+  font-size: 80px;
 }
 
-/* Fonts */
-@font-face {
-	font-family: 'GeneralSans-Variable';
-	src: url('../public/fonts/GeneralSans-Variable.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-Variable.woff') format('woff'),
-		url('../public/fonts/GeneralSans-Variable.ttf') format('truetype');
-	font-weight: 200 700;
-	font-display: swap;
-	font-style: normal;
+#category {
+  font-family: Staatliches;
+  font-weight: 500;
 }
 
-.font-general-variable {
-	font-family: 'GeneralSans-Variable';
+#title {
+  letter-spacing: 0.4px;
+  font-size: 50px;
+  font-size: 1.375rem;
+  line-height: 1.13636;
 }
 
-@font-face {
-	font-family: 'GeneralSans-VariableItalic';
-	src: url('../public/fonts/GeneralSans-VariableItalic.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-VariableItalic.woff') format('woff'),
-		url('../public/fonts/GeneralSans-VariableItalic.ttf') format('truetype');
-	font-weight: 200 700;
-	font-display: swap;
-	font-style: italic;
+#banner {
+  margin: 20px;
+  height: 800px;
 }
 
-.font-general-variable-italic {
-	font-family: 'GeneralSans-VariableItalic';
+#editor {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
-@font-face {
-	font-family: 'GeneralSans-Extralight';
-	src: url('../public/fonts/GeneralSans-Extralight.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-Extralight.woff') format('woff'),
-		url('../public/fonts/GeneralSans-Extralight.ttf') format('truetype');
-	font-weight: 200;
-	font-display: swap;
-	font-style: normal;
+.uk-navbar-container {
+  background: #67162b !important;
+  font-family: Staatliches;
 }
 
-.font-general-extralight {
-	font-family: 'GeneralSans-Extralight';
+img:hover {
+  opacity: 1;
+  transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
-@font-face {
-	font-family: 'GeneralSans-ExtralightItalic';
-	src: url('../public/fonts/GeneralSans-ExtralightItalic.woff2')
-			format('woff2'),
-		url('../public/fonts/GeneralSans-ExtralightItalic.woff') format('woff'),
-		url('../public/fonts/GeneralSans-ExtralightItalic.ttf')
-			format('truetype');
-	font-weight: 200;
-	font-display: swap;
-	font-style: italic;
+.glass-nav {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
 }
 
-.font-general-extralight-italic {
-	font-family: 'GeneralSans-ExtralightItalic';
+.glass-nav-mobile {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
 }
 
-@font-face {
-	font-family: 'GeneralSans-Light';
-	src: url('../public/fonts/GeneralSans-Light.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-Light.woff') format('woff'),
-		url('../public/fonts/GeneralSans-Light.ttf') format('truetype');
-	font-weight: 300;
-	font-display: swap;
-	font-style: normal;
+.blogimg {
+  margin: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 85%;
+  border-width: 1px;
+  border-color: #2b2b2b5e;
 }
 
-.font-general-light {
-	font-family: 'GeneralSans-Light';
+@media (min-width: 768px) {
+  .blogimg {
+    max-width: 70%;
+  }
 }
 
-@font-face {
-	font-family: 'GeneralSans-LightItalic';
-	src: url('../public/fonts/GeneralSans-LightItalic.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-LightItalic.woff') format('woff'),
-		url('../public/fonts/GeneralSans-LightItalic.ttf') format('truetype');
-	font-weight: 300;
-	font-display: swap;
-	font-style: italic;
+@media (min-width: 1024px) {
+  .blogimg {
+    max-width: 55%;
+  }
 }
 
-.font-general-light-italic {
-	font-family: 'GeneralSans-LightItalic';
+.animated {
+  transition: transform 350ms ease-in-out 100ms, opacity 350ms ease-in-out 100ms;
+  --tw-translate-y: -5px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  opacity: 0;
 }
 
-@font-face {
-	font-family: 'GeneralSans-Regular';
-	src: url('../public/fonts/GeneralSans-Regular.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-Regular.woff') format('woff'),
-		url('../public/fonts/GeneralSans-Regular.ttf') format('truetype');
-	font-weight: 400;
-	font-display: swap;
-	font-style: normal;
+.shown {
+  --tw-translate-y: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  opacity: 1;
 }
 
-.font-general-regular {
-	font-family: 'GeneralSans-Regular';
+.register-img {
+  background-image: url("https://images.unsplash.com/photo-1486218119243-13883505764c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80");
 }
 
-@font-face {
-	font-family: 'GeneralSans-Italic';
-	src: url('../public/fonts/GeneralSans-Italic.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-Italic.woff') format('woff'),
-		url('../public/fonts/GeneralSans-Italic.ttf') format('truetype');
-	font-weight: 400;
-	font-display: swap;
-	font-style: italic;
+.login-img {
+  background-image: url("https://images.unsplash.com/photo-1551927336-09d50efd69cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80");
 }
 
-.font-general-italic {
-	font-family: 'GeneralSans-Italic';
+.resetpassword-img {
+  background-image: url("https://images.unsplash.com/photo-1594911772125-07fc7a2d8d9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
 }
 
-@font-face {
-	font-family: 'GeneralSans-Medium';
-	src: url('../public/fonts/GeneralSans-Medium.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-Medium.woff') format('woff'),
-		url('../public/fonts/GeneralSans-Medium.ttf') format('truetype');
-	font-weight: 500;
-	font-display: swap;
-	font-style: normal;
+.forgot-password-img {
+  background-image: url("https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80");
 }
 
-.font-general-medium {
-	font-family: 'GeneralSans-Medium';
+.hero-img {
+  background-image: url("https://cdn.sanity.io/images/yavqngwf/production/0da4e8c76f625ad78280a2283caf4a4f9582d33b-5472x3648.jpg?fp-x=0.5&fp-y=0.5&w=5000&fit=max&auto=format");
 }
 
-@font-face {
-	font-family: 'GeneralSans-MediumItalic';
-	src: url('../public/fonts/GeneralSans-MediumItalic.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-MediumItalic.woff') format('woff'),
-		url('../public/fonts/GeneralSans-MediumItalic.ttf') format('truetype');
-	font-weight: 500;
-	font-display: swap;
-	font-style: italic;
+.smallhero-height {
+  height: 30rem;
 }
 
-.font-general-medium-italic {
-	font-family: 'GeneralSans-MediumItalic';
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
-@font-face {
-	font-family: 'GeneralSans-Semibold';
-	src: url('../public/fonts/GeneralSans-Semibold.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-Semibold.woff') format('woff'),
-		url('../public/fonts/GeneralSans-Semibold.ttf') format('truetype');
-	font-weight: 600;
-	font-display: swap;
-	font-style: normal;
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-.font-general-semibold {
-	font-family: 'GeneralSans-Semibold';
+/* use a media query to center abackground image on mobile */
+
+@media (max-width: 768) {
+  .register-img {
+    background-position: center;
+  }
+
+  .login-img {
+    background-position: center;
+  }
+
+  .resetpassword-img {
+    background-position: center;
+  }
+
+  .forgot-password-img {
+    background-position: center;
+  }
+  .hero-img {
+    background-position: center;
+    background-attachment: fixed;
+    background-image: url("https://cdn.sanity.io/images/yavqngwf/production/0da4e8c76f625ad78280a2283caf4a4f9582d33b-5472x3648.jpg?fp-x=0.5&fp-y=0.5&w=5000&fit=max&auto=format") !important;
+  }
 }
 
-@font-face {
-	font-family: 'GeneralSans-SemiboldItalic';
-	src: url('../public/fonts/GeneralSans-SemiboldItalic.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-SemiboldItalic.woff') format('woff'),
-		url('../public/fonts/GeneralSans-SemiboldItalic.ttf') format('truetype');
-	font-weight: 600;
-	font-display: swap;
-	font-style: italic;
+.radio-label {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: #ddd;
+  cursor: pointer;
 }
 
-.font-general-semibold-italic {
-	font-family: 'GeneralSans-SemiboldItalic';
+input[type="radio"] {
+  display: none;
 }
 
-@font-face {
-	font-family: 'GeneralSans-Bold';
-	src: url('../public/fonts/GeneralSans-Bold.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-Bold.woff') format('woff'),
-		url('../public/fonts/GeneralSans-Bold.ttf') format('truetype');
-	font-weight: 700;
-	font-display: swap;
-	font-style: normal;
-}
-
-.font-general-bold {
-	font-family: 'GeneralSans-Bold';
-}
-
-@font-face {
-	font-family: 'GeneralSans-BoldItalic';
-	src: url('../public/fonts/GeneralSans-BoldItalic.woff2') format('woff2'),
-		url('../public/fonts/GeneralSans-BoldItalic.woff') format('woff'),
-		url('../public/fonts/GeneralSans-BoldItalic.ttf') format('truetype');
-	font-weight: 700;
-	font-display: swap;
-	font-style: italic;
-}
-
-.font-general-bold-italic {
-	font-family: 'GeneralSans-BoldItalic';
-}
-
-/* Scroll to top style */
-.scrollToTop {
-	@apply bg-indigo-600;
-	@apply text-white;
-	position: fixed;
-	width: 100%;
-	align-items: center;
-	height: 20px;
-	justify-content: center;
-	z-index: 999;
-	cursor: pointer;
-	animation: fadeIn 0.3s;
-	transition: opacity 0.4s;
-	opacity: 1;
-}
-
-.scrollToTop:hover {
-	opacity: 1;
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 0.5;
-	}
+input[type="radio"]:checked + label {
+  background-color: #67162c;
+  color: white;
 }

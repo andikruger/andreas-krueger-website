@@ -60,7 +60,7 @@ const WelcomeCard = () => {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th className="px-4 py-2">Scheduled Arrival</th>
+            <th className="px-4 py-2">Scheduled Departure</th>
             <th className="px-4 py-2">Estimated Arrival</th>
           </tr>
         </thead>

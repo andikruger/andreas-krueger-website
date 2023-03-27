@@ -9,8 +9,8 @@ const WelcomeCard = () => {
   console.log(timezone);
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 absolute top-20 pb-6 left-6 md:w-1/5 md:left-1/6">
-      <h1 className="text-3xl font-bold mb-2">
+    <div className="bg-gray-700 rounded-lg shadow-lg p-6 absolute top-20 pb-6 left-6 md:w-1/5 md:left-1/6">
+      <h1 className="text-3xl text-white font-bold mb-2">
         AK1302 <span className="text-xl mb-2">/ AND13AC</span>
       </h1>
 
@@ -20,29 +20,29 @@ const WelcomeCard = () => {
         className="w-full mb-4 rounded-lg"
       />
       {/* Add  */}
-      <p className="text-4xl">JNB &rarr; VIE</p>
-      <p className="text-md">Johannesburg &rarr; Vienna</p>
+      <p className="text-4xl text-white">JNB &rarr; VIE</p>
+      <p className="text-md text-white">Johannesburg &rarr; Vienna</p>
       <div className="pb-4"></div>
 
       {/* create a table with four cells to add the details Scheduled departure, Actual departure on the left and scheduled arrival and estimated arrival on the right */}
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th className="px-4 py-2">Operator</th>
-            <th className="px-4 py-2">Registered Country</th>
+            <th className="px-4 py-2 text-white">Operator</th>
+            <th className="px-4 py-2 text-white">Registered Country</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className="border px-4 py-2">Andreas Krüger</td>
-            <td className="border px-4 py-2">
+            <td className="border px-4 py-2 text-white">Andreas Krüger</td>
+            <td className="border px-4 py-2 text-white">
               AUT/ZAF
               {/* add the zaf and aut flag underneath */}
               <span className="inline-block h-6 w-6">
                 <img
                   className="h-full w-full object-cover"
                   src="https://flagsapi.com/AT/flat/64.png"
-                  alt="South Africa"
+                  alt="Austria"
                 />
                 {/* add padding */}
               </span>
@@ -60,16 +60,16 @@ const WelcomeCard = () => {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th className="px-4 py-2">Scheduled Departure</th>
-            <th className="px-4 py-2">Estimated Arrival</th>
+            <th className="px-4 py-2 text-white ">Scheduled Departure</th>
+            <th className="px-4 py-2 text-white">Estimated Arrival</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className="border px-4 py-2">
+            <td className="border px-4 py-2 text-white">
               19:25 <span className="text-xs">UTC+02</span>
             </td>
-            <td className="border px-4 py-2">
+            <td className="border px-4 py-2 text-white">
               06:05<span className="text-xs"> UTC{timezone}</span>
             </td>
           </tr>
@@ -82,14 +82,14 @@ const WelcomeCard = () => {
           <table className="table-auto w-full">
             <thead>
               <tr>
-                <th className="px-4 py-2">Aircraft</th>
-                <th className="px-4 py-2">Registration</th>
+                <th className="px-4 py-2 text-white">Aircraft</th>
+                <th className="px-4 py-2 text-white">Registration</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="border px-4 py-2">Airbus A359</td>
-                <td className="border px-4 py-2">ZS-GAT</td>
+                <td className="border px-4 py-2 text-white">Airbus A359</td>
+                <td className="border px-4 py-2 text-white">ZS-GAT</td>
               </tr>
             </tbody>
           </table>

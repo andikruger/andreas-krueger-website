@@ -3,7 +3,9 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import WelcomeCard from "../components/WelcomeCard";
-
+import BannerMessage from "./Banner";
+import LoadingIndicator from "./Loader";
+import { popupContent, popupHead, popupText, okText } from "../lib/popupStyles";
 function InfoPopup(props) {
   const [planeImgSrc, setPlaneImgSrc] = useState(null);
   const [aircraftData, setAircraftData] = useState({
@@ -76,7 +78,7 @@ function InfoPopup(props) {
           {Math.round((props.speed * 18) / 5)} Km/h
         </span>
         <br />
-        <a href={"./../" + props.bl + "flight-info/hex-" + props.icao}>
+        <a href={"./../" + props.bl + "flight/hex-" + props.icao}>
           View flight
         </a>
       </p>
@@ -208,10 +210,15 @@ function Map() {
 
   return (
     <>
+      <BannerMessage
+        message={
+          "Flight AK1302 is approaching. This Website is currently being worked on"
+        }
+      />
       <div className="z-40 absolute top-0 left-0 w-full">
         <WelcomeCard />
       </div>
-
+      <LoadingIndicator />
       <div className="z-10 absolute top-0 left-0 w-full">
         <MapContainer
           center={center}
@@ -261,6 +268,7 @@ function Map() {
                       }
                     >
                       <Popup>
+                        {/* <div style={popupContent}> */}
                         <InfoPopup
                           icao={stat[0]}
                           callsign={stat[1]}
@@ -268,6 +276,7 @@ function Map() {
                           speed={stat[9]}
                           bl={bl}
                         />
+                        {/* </div> */}
                       </Popup>
                     </Marker>
                   );

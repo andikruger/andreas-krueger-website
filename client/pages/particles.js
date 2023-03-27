@@ -1,12 +1,4 @@
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Head from "next/head";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import TypingText from "@/components/TypingText";
-import CtaButton from "@/components/CtaButton";
-import photo from "../assets/andreas_kruger.jpeg";
-
+//import "./styles.css";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
@@ -20,21 +12,9 @@ export default function App() {
     await loadFull(main);
   };
 
-  const { ref, inView } = useInView();
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
-
-  function handleClick() {
-    window.open("contact", "_blank");
-  }
-
   return (
     <div className="App">
-      <Head>
-        <title>About Me</title>
-        <meta name="description" content="Learn more about me and my work." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <h1>Hello Coders!</h1>
 
       <Particles
         id="tsparticles"
@@ -159,27 +139,6 @@ export default function App() {
           },
         }}
       />
-      <div className="relative z-10 mt-24 flex flex-col items-center">
-        <div className="w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden shadow-lg">
-          <Image
-            src={photo}
-            alt="Profile picture"
-            width={500}
-            height={1000}
-            layout="responsive"
-          />
-        </div>
-        <h1 className="text-3xl md:text-6xl font-bold text-white my-6">
-          <TypingText text="Andreas Krüger" />
-        </h1>
-        <p className="text-lg md:text-xl text-gray-300 text-center px-6 md:px-20 mb-12">
-          Howzit, I am a professional irritant, an aviation enthusiast and a
-          website developer based in Vienna, Austria. You might find me at the
-          Airport, in front of the computer, exploring a City or jogging. Who
-          knows?
-        </p>
-        <CtaButton text="Click me" onClick={handleClick} />
-      </div>
     </div>
   );
 }

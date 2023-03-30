@@ -128,7 +128,7 @@ function Airport({ airport }) {
     iconSize = 24;
   }
   var markr = null;
-  console.log(airportData.latitude);
+
   let coords = [airportData.latitude, airportData.longitude];
   return (
     <div className="bg-gray-900 min-h-screen">

@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  Polyline,
-} from "react-leaflet";
-import { Icon } from "leaflet";
-import "leaflet/dist/leaflet.css";
-
+import AirportMap from "./AirportMap";
 function FlightTr(props) {
   var d = new Date(0);
   d.setUTCSeconds(props.firstSeen);
@@ -80,15 +71,12 @@ function Airport({ airport }) {
     fetchEnd; // Test data
 
   useEffect(() => {
-    fetch("https://hexdb.io/api/v1/airport/icao/" + airport)
+    console.log("Fetching data for " + airport);
+    fetch(`/api/airport/info/${airport}`)
       .then((response) => response.json())
       .then((responseData) => {
-        //console.log(responseData);
         setAirportData(responseData);
-
-        setLat(responseData.latitude);
-
-        setLon(responseData.longitude);
+        console.log(responseData);
       })
       .catch((e) => {
         console.log(e.toString());
@@ -97,7 +85,7 @@ function Airport({ airport }) {
         );
       });
 
-    fetch(fetchurl0)
+    fetch(`/api/airport/arrival/${airport}`)
       .then((response) => response.json())
       .then((responseData) => {
         console.log(responseData);
@@ -110,7 +98,7 @@ function Airport({ airport }) {
         );
       });
 
-    fetch(fetchurl1)
+    fetch(`/api/airport/departure/${airport}`)
       .then((response) => response.json())
       .then((responseData2) => {
         // console.log(responseData2);
@@ -123,13 +111,10 @@ function Airport({ airport }) {
         );
       });
   }, []);
-  var iconSize = 0;
-  if (lat != 0 && lon != 0) {
-    iconSize = 24;
-  }
+
   var markr = null;
 
-  let coords = [airportData.latitude, airportData.longitude];
+  let coords = [lat, lon];
   return (
     <div className="bg-gray-900 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
@@ -153,25 +138,7 @@ function Airport({ airport }) {
                 </div>
               </div>
               <div className="bg-gray-600 px-6 py-16">
-                <MapContainer
-                  center={coords}
-                  zoom={13}
-                  scrollWheelZoom={false}
-                  className="h-80 w-full"
-                >
-                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                  <Marker
-                    position={coords}
-                    icon={
-                      new Icon({
-                        iconUrl: "./../directions/d0.png",
-                        iconSize: [iconSize, iconSize],
-                      })
-                    }
-                  >
-                    <Popup>{airportData.airport}</Popup>
-                  </Marker>
-                </MapContainer>
+                <AirportMap airport={airportData} />
               </div>
             </div>
             <div className="flex flex-col justify-between bg-gray-50 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">

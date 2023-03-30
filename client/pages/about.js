@@ -178,7 +178,11 @@ export default function App() {
           Airport, in front of the computer, exploring a City or jogging. Who
           knows?
         </p>
-        <CtaButton text="Click me" onClick={handleClick} />
+        <CtaButton text="Get in touch" onClick={handleClick} />
+        <div className="pt-2">
+          {" "}
+          <CtaButton text="My CV" onClick={handleClick} />
+        </div>
       </div>
     </div>
   );

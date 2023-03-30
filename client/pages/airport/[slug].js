@@ -10,8 +10,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Airport = () => {
+  const [slug, setSlug] = useState("");
   const router = useRouter();
-  const { slug } = router.query;
+
+  useEffect(() => {
+    if (router.isReady) {
+      setSlug(router.query.slug);
+    }
+  }, [router.isReady]);
   return (
     <>
       <div className="bg-gray-200">

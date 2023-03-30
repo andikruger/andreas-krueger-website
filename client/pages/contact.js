@@ -1,139 +1,185 @@
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import Head from "next/head";
-import HeroSmall from "../components/Hero/HeroSmall";
-import ContactForm from "../components/Contact/Contact";
-import heroImg from "../assets/clubhouse.jpg";
-import Link from "next/link";
-const Contact = () => {
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import TypingText from "@/components/TypingText";
+import CtaButton from "@/components/CtaButton";
+import photo from "../assets/andreas_kruger.jpeg";
+import Modal from "@/components/contactModal";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import dynamic from "next/dynamic";
+const ContactMap = dynamic(() => import("@/components/contactMap"), {
+  ssr: false,
+});
+
+export default function App() {
+  const particlesInit = async (main) => {
+    console.log(main);
+
+    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(main);
+  };
+
+  const { ref, inView } = useInView();
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+
+  function handleClick() {
+    window.open("contact", "_blank");
+  }
+
   return (
-    <>
+    <div className="App">
       <Head>
-        <title>Contact Us | Rand Athletic Club</title>
-        <meta
-          name="description"
-          content="Created as template for future work"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="57x57"
-          href="/apple-icon-57x57.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="60x60"
-          href="/apple-icon-60x60.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="72x72"
-          href="/apple-icon-72x72.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="/apple-icon-76x76.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="114x114"
-          href="/apple-icon-114x114.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="120x120"
-          href="/apple-icon-120x120.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="144x144"
-          href="/apple-icon-144x144.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="152x152"
-          href="/apple-icon-152x152.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-icon-180x180.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/android-icon-192x192.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="96x96"
-          href="/favicon-96x96.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="msapplication-TileColor" content="#ffffff" />
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-        <meta name="theme-color" content="#ffffff" />
+        <title>About Me</title>
+        <meta name="description" content="Learn more about me and my work." />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HeroSmall heading="Get hold of us" message="" image={heroImg} />
 
-      <div>
-        <h1 className="text-2xl font-bold text-center p-4 m-4 py-0 rac-colour">
-          Our Contact Details
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fullScreen: {
+            enable: true,
+            zIndex: 1,
+          },
+          particles: {
+            number: {
+              value: 10,
+              density: {
+                enable: false,
+                value_area: 800,
+              },
+            },
+            color: {
+              value: "#fff",
+            },
+            shape: {
+              type: "atom",
+              options: {
+                sides: 5,
+              },
+            },
+            opacity: {
+              value: 0.8,
+              random: false,
+              anim: {
+                enable: false,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false,
+              },
+            },
+            size: {
+              value: 4,
+              random: false,
+              anim: {
+                enable: false,
+                speed: 40,
+                size_min: 0.1,
+                sync: false,
+              },
+            },
+            rotate: {
+              value: 0,
+              random: true,
+              direction: "clockwise",
+              animation: {
+                enable: true,
+                speed: 5,
+                sync: false,
+              },
+            },
+            line_linked: {
+              enable: true,
+              distance: 600,
+              color: "#ffffff",
+              opacity: 0.4,
+              width: 2,
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "out",
+              attract: {
+                enable: false,
+                rotateX: 600,
+                rotateY: 1200,
+              },
+            },
+          },
+          interactivity: {
+            events: {
+              onhover: {
+                enable: true,
+                mode: ["grab"],
+              },
+              onclick: {
+                enable: false,
+                mode: "bubble",
+              },
+              resize: true,
+            },
+            modes: {
+              grab: {
+                distance: 400,
+                line_linked: {
+                  opacity: 1,
+                },
+              },
+              bubble: {
+                distance: 400,
+                size: 40,
+                duration: 2,
+                opacity: 8,
+                speed: 3,
+              },
+              repulse: {
+                distance: 200,
+              },
+              push: {
+                particles_nb: 4,
+              },
+              remove: {
+                particles_nb: 2,
+              },
+            },
+          },
+          retina_detect: true,
+          background: {
+            color: "#111",
+            image: "",
+            position: "50% 50%",
+            repeat: "no-repeat",
+            size: "cover",
+          },
+        }}
+      />
+      <div className="relative z-10 mt-24 flex flex-col items-center">
+        <h1 className="text-3xl md:text-6xl font-bold text-white my-6">
+          <TypingText text="Let's get in touch" />
         </h1>
-        <div className="flex flex-col justify-center items-center">
-          <div className="flex flex-col justify-center items-center">
-            <h2 className="text-xl font-bold text-center p-4 m-4 py-0">
-              Vreni Welch
-            </h2>
-            <p className="text-lg font-bold text-center p-4 m-4 py-0">
-              <a className="rac-colour hover" href="tel:+27114428256">
-                {" "}
-                Tel: 011 442 8256
-              </a>
-            </p>
-            <p className="text-lg font-bold text-center p-4 m-4 py-0 rac-colour">
-              Email:{" "}
-              <a
-                href="mailto:randathletic@iafrica.com
-                "
-                className="hover rac-colour"
-              >
-                randathletic@iafrica.com
-              </a>
-            </p>
-            {/* phisical address */}
-            <p className="text-lg font-bold text-center p-4 m-4 py-0 rac-colour">
-              Address: 1 Garden Road Bordeaux Johannesburg 2194
-            </p>
-
-            {/* google map */}
-          </div>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.6823478764945!2d28.016354315101506!3d-26.109285966462213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9574a9d5760a8b%3A0x33736db6b8547d53!2s1%20Garden%20Rd%2C%20Bordeaux%2C%20Johannesburg%2C%202194%2C%20S%C3%BCdafrika!5e0!3m2!1sde!2sat!4v1668080577385!5m2!1sde!2sat"
-            width="100%"
-            height="450"
-            style={{ border: 0, borderRadius: "1rem" }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+        <p className="text-lg md:text-xl text-gray-300 text-center px-6 md:px-20 mb-12">
+          Got a question? Need some help? Want to tell me how much you hate my
+          website? Well, lucky you, you've stumbled upon my contact page! I
+          can't promise I'll respond quickly, but I can promise I'll read your
+          message with great interest while sipping my coffee and judging you
+          silently.
+        </p>
+        <Modal />
+        {/* use the contactMap component to create a full width map */}
+        <div className="w-full h-96 pt-4 z-0">
+          <ContactMap />
         </div>
       </div>
-      {/* <ContactForm /> */}
-    </>
+    </div>
   );
-};
-
-export default Contact;
+}

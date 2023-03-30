@@ -129,7 +129,7 @@ function Airport({ airport }) {
   }
   var markr = null;
   console.log(airportData.latitude);
-  let coords = [-26.134789, 28.240528];
+  let coords = [airportData.latitude, airportData.longitude];
   return (
     <div className="bg-gray-900 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">

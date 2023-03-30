@@ -10,7 +10,7 @@ const Nav = ({ categories }) => {
           <ul className="uk-navbar-nav">
             <li>
               <Link href="/" legacyBehavior>
-                <a>Rand Athletic Club</a>
+                <a>Andreas Krüger</a>
               </Link>
             </li>
           </ul>

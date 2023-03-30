@@ -95,47 +95,29 @@ const NavBar = () => {
                 About Me
               </Link>
             </li>
-            <li onClick={handleDropdown} className="p-4">
-              <Link className="hover" href="#">
-                Club Activities
-              </Link>
-              {/* on hover display a dropdown */}
-              <div
-                onClick={handleDropdown}
-                className="dropdown absolute hidden group-hover:block"
-              >
-                <ul className="bg-white shadow-lg rounded-lg">
-                  <li className="p-4" onClick={handleDropdown}>
-                    <Link className="hover" href="/clubactivities/timetrial">
-                      Time Trial
-                    </Link>
-                  </li>
-                  <li className="p-4" onClick={handleDropdown}>
-                    <Link className="hover" href="/clubactivities/crosscountry">
-                      Cross Country
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </li>
             <li className="p-4">
-              <Link className="hover" href="/membership">
-                Membership
+              <Link className="hover" href="/map">
+                Map
               </Link>
             </li>
             <li className="p-4">
-              <Link className="hover" href="/races">
-                Races
+              <Link className="hover" href="/airport">
+                Airport/Aircraft search
+              </Link>
+            </li>
+            <li className="p-4">
+              <Link className="hover" href="/project">
+                My Projects
+              </Link>
+            </li>
+            <li className="p-4">
+              <Link className="hover" href="/Blog">
+                Blog
               </Link>
             </li>
             <li className="p-4">
               <Link className="hover" href="/contact">
                 Contact
-              </Link>
-            </li>
-            <li className="p-4">
-              <Link className="hover" href="/auth/login">
-                Login
               </Link>
             </li>
           </ul>
@@ -170,45 +152,35 @@ const NavBar = () => {
                 className="p-4 text-4xl hover:text-gray-500 rac-colour"
               >
                 <Link className="hover" href="/about">
-                  About us
+                  About Me
                 </Link>
               </li>
               {/* <li className="p-4 text-4xl hover:text-gray-500 rac-colour">
                   Club Activities */}
               {/* on hover display a dropdown */}
               {/* </li> */}
-              <li className="p-4">
-                <Link
-                  onClick={handleNav}
-                  className="hover text-4xl hover:text-gray-500 rac-colour"
-                  href="/clubactivities/timetrial"
-                >
-                  Time Trial
-                </Link>
-              </li>
-              <li className="p-4">
-                <Link
-                  onClick={handleNav}
-                  className="hover text-4xl hover:text-gray-500 rac-colour"
-                  href="/clubactivities/crosscountry"
-                >
-                  Cross Country
+              <li
+                onClick={handleNav}
+                className="p-4 text-4xl hover:text-gray-500 rac-colour"
+              >
+                <Link className="hover" href="/map">
+                  Map
                 </Link>
               </li>
               <li
                 onClick={handleNav}
                 className="p-4 text-4xl hover:text-gray-500 rac-colour"
               >
-                <Link className="hover" href="/membership">
-                  Membership
+                <Link className="hover" href="/projects">
+                  My Projects
                 </Link>
               </li>
               <li
                 onClick={handleNav}
                 className="p-4 text-4xl hover:text-gray-500 rac-colour"
               >
-                <Link className="hover" href="/races">
-                  Races
+                <Link className="hover" href="/blog">
+                  Blog
                 </Link>
               </li>
               <li
@@ -217,14 +189,6 @@ const NavBar = () => {
               >
                 <Link className="hover" href="/contact">
                   Contact
-                </Link>
-              </li>
-              <li
-                onClick={handleNav}
-                className="p-4 text-4xl hover:text-gray-500 rac-colour"
-              >
-                <Link className="hover" href="/auth/login">
-                  Login
                 </Link>
               </li>
             </ul>

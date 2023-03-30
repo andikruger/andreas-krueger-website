@@ -4,14 +4,11 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import TypingText from "@/components/TypingText";
-import { SiMinutemailer } from "react-icons/si";
-import Modal from "@/components/contactModal";
+import CtaButton from "@/components/CtaButton";
+import photo from "../assets/andreas_kruger.jpeg";
+
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import dynamic from "next/dynamic";
-const ContactMap = dynamic(() => import("@/components/contactMap"), {
-  ssr: false,
-});
 
 export default function App() {
   const particlesInit = async (main) => {
@@ -31,10 +28,13 @@ export default function App() {
     window.open("contact", "_blank");
   }
 
+  function handleCV() {
+    window.open("/documents/andreas_krueger_cv.pdf", "_blank");
+  }
   return (
     <div className="App">
       <Head>
-        <title>About Me</title>
+        <title>Projects</title>
         <meta name="description" content="Learn more about me and my work." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -162,21 +162,24 @@ export default function App() {
           },
         }}
       />
+
       <div className="relative z-10 mt-24 flex flex-col items-center">
         <h1 className="text-3xl md:text-6xl font-bold text-white my-6">
-          <TypingText text="Let's get in touch" />
+          <TypingText text="My projects" />
         </h1>
-        <p className="text-lg md:text-xl text-gray-300 text-center px-6 md:px-20 mb-12">
-          Got a question? Need some help? Want to tell me how much you hate my
-          website? Well, lucky you, you've stumbled upon my contact page! I
-          can't promise I'll respond quickly, but I can promise I'll read your
-          message with great interest while sipping my coffee and judging you
-          silently.
-        </p>
-        <Modal />
-        {/* use the contactMap component to create a full width map */}
-        <div className="w-full h-96 pt-4 z-0">
-          <ContactMap />
+        <div class="">
+          <div class="flex items-center justify-center w-64 h-64 rounded-full bg-gray-800">
+            <svg
+              class="w-16 h-16 text-gray-400 fill-current"
+              viewBox="0 0 20 20"
+            >
+              <path d="M14.004 10.975a2.016 2.016 0 10-4.032 0 2.016 2.016 0 004.032 0zm2.176-2.176A7.981 7.981 0 0118 10c0 4.414-3.584 8-8 8S2 14.414 2 10c0-3.666 2.482-6.765 5.824-7.688.21-.066.433-.103.656-.103h.055c.232 0 .458.037.667.103C11.518 3.235 14 6.334 14 10c0 1.81-.482 3.484-1.32 4.934z" />
+            </svg>
+          </div>
+          <div class="mt-8 text-center text-gray-400">
+            <p class="text-lg font-medium">No projects listed yet.</p>
+            <p class="mt-2">But they're coming soon!</p>
+          </div>
         </div>
       </div>
     </div>

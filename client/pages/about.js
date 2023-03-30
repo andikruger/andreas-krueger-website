@@ -28,6 +28,9 @@ export default function App() {
     window.open("contact", "_blank");
   }
 
+  function handleCV() {
+    window.open("/documents/andreas_krueger_cv.pdf", "_blank");
+  }
   return (
     <div className="App">
       <Head>
@@ -181,7 +184,7 @@ export default function App() {
         <CtaButton text="Get in touch" onClick={handleClick} />
         <div className="pt-2">
           {" "}
-          <CtaButton text="My CV" onClick={handleClick} />
+          <CtaButton text="My CV" onClick={handleCV} />
         </div>
       </div>
     </div>

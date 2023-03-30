@@ -83,15 +83,12 @@ function Airport({ airport }) {
     fetch("https://hexdb.io/api/v1/airport/icao/" + airport)
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
+        //console.log(responseData);
         setAirportData(responseData);
-        console.log(responseData);
-        if (typeof responseData.latitude !== "undefined") {
-          setLat(responseData.latitude);
-        }
-        if (typeof responseData.longitude !== "undefined") {
-          setLon(responseData.longitude);
-        }
+
+        setLat(responseData.latitude);
+
+        setLon(responseData.longitude);
       })
       .catch((e) => {
         console.log(e.toString());
@@ -116,7 +113,7 @@ function Airport({ airport }) {
     fetch(fetchurl1)
       .then((response) => response.json())
       .then((responseData2) => {
-        console.log(responseData2);
+        // console.log(responseData2);
         setDepartures(responseData2);
       })
       .catch((e) => {
@@ -131,41 +128,40 @@ function Airport({ airport }) {
     iconSize = 24;
   }
   var markr = null;
-
+  console.log(airportData.latitude);
+  let coords = [-26.134789, 28.240528];
   return (
     <div className="bg-gray-900 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="mt-24 text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
-            O.R. Tambo International Airport
+          <h1 className="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
+            {airportData.airport}
           </h1>
           <p className="mt-4 text-lg text-gray-500 dark:text-gray-400">
-            ICAO: FAOR | IATA: JNB
+            ICAO: {airportData.icao} | IATA: {airportData.iata}
           </p>
         </div>
         <div className="mt-16">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="flex flex-col justify-between bg-gray-50 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+            <div className="flex flex-col justify-between bg-gray-700 rounded-lg shadow-lg overflow-hidden">
               <div className="p-6">
-                <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-                  Coordinates
-                </h2>
+                <h2 className="text-lg font-medium text-white">Coordinates</h2>
                 <div className="mt-2 flex items-baseline">
-                  <span className="text-2xl font-semibold text-gray-900 dark:text-white">
-                    -26.134789, 28.240528
+                  <span className="text-2xl font-semibold text-white">
+                    {airportData.latitude}, {airportData.longitude}
                   </span>
                 </div>
               </div>
               <div className="bg-gray-600 px-6 py-16">
                 <MapContainer
-                  center={[-26.134789, 28.240528]}
+                  center={coords}
                   zoom={13}
                   scrollWheelZoom={false}
                   className="h-80 w-full"
                 >
                   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                   <Marker
-                    position={[-26.134789, 28.240528]}
+                    position={coords}
                     icon={
                       new Icon({
                         iconUrl: "./../directions/d0.png",
@@ -173,7 +169,7 @@ function Airport({ airport }) {
                       })
                     }
                   >
-                    <Popup>O.R. Tambo International Airport</Popup>
+                    <Popup>{airportData.airport}</Popup>
                   </Marker>
                 </MapContainer>
               </div>

@@ -111,7 +111,7 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="p-4">
-              <Link className="hover" href="/Blog">
+              <Link className="hover" href="/blog">
                 Blog
               </Link>
             </li>

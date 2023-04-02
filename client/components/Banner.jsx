@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 
 function BannerMessage({ message }) {
@@ -6,7 +6,15 @@ function BannerMessage({ message }) {
 
   const handleDismiss = () => {
     setIsVisible(false);
+    sessionStorage.setItem("bannerMessage", "dismissed");
   };
+
+  useEffect(() => {
+    const isDismissed = sessionStorage.getItem("bannerMessage");
+    if (isDismissed) {
+      setIsVisible(false);
+    }
+  }, []);
 
   return (
     <div

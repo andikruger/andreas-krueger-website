@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import Image from "next/image";
+import { FaPlane } from "react-icons/fa";
 import {
   MapContainer,
   TileLayer,
@@ -352,216 +353,102 @@ function FlightInfo({ infoSlug }) {
     size = 0;
   }
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="container-fluid">
-          <h3>{liveData?.states[0][1]}</h3>
-          <p className="text-muted text-small">
-            {liveData ? (
-              <span>
-                Last update on{" "}
-                {new Date(liveData?.states[0][4] * 1000).toLocaleDateString(
-                  "default"
-                )}{" "}
-                at{" "}
-                {new Date(liveData?.states[0][4] * 1000).toLocaleTimeString(
-                  "default"
-                )}
-              </span>
-            ) : null}
-          </p>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="map" id="map">
-                {liveData ? (
-                  <MapContainer
-                    center={[liveData?.states[0][6], liveData?.states[0][5]]}
-                    zoom={3}
-                    scrollWheelZoom={true}
-                  >
-                    <TileLayer
-                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    {originData ? (
-                      <Marker
-                        position={[lat1, lon1]}
-                        icon={
-                          new Icon({
-                            iconUrl: "./../location.png",
-                            iconSize: [size, size],
-                          })
-                        }
-                      >
-                        <Popup>
-                          {originData?.airport}
-                          <br />
-                          <Image
-                            src={`https://www.countryflags.io/${originData?.country_code}/flat/64.png`}
-                            className="country-flag"
-                            width={64}
-                            height={64}
-                          />{" "}
-                          ({origin})
-                        </Popup>
-                      </Marker>
-                    ) : null}
-                    {
-                      <Polyline
-                        pathOptions={{
-                          color: "#909090",
-                          fill: false,
-                          weight: 2,
-                          dashArray: "10,10",
-                          dashOffset: "0",
-                        }}
-                        positions={[
-                          [lat1, lon1],
-                          [liveData?.states[0][6], liveData?.states[0][5]],
-                          [lat2, lon2],
-                        ]}
-                      />
-                    }
-                    {destinationData ? (
-                      <Marker
-                        position={[lat2, lon2]}
-                        icon={
-                          new Icon({
-                            iconUrl: "./../location.png",
-                            iconSize: [size, size],
-                          })
-                        }
-                      >
-                        <Popup>
-                          {destinationData?.airport}
-                          <br />
-                          <img
-                            className="country-flag"
-                            crossOrigin="anonymous"
-                            src={`https://flagsapi.com/${originData?.country_code}/flat/64.png`}
-                          />{" "}
-                          ({destination})
-                        </Popup>
-                      </Marker>
-                    ) : null}
-                    <Marker
-                      position={[
-                        liveData?.states[0][6],
-                        liveData?.states[0][5],
-                      ]}
-                      icon={
-                        new Icon({
-                          iconUrl:
-                            "./../directions/d" +
-                            Math.floor((liveData.states[0][10] + 23) / 45) *
-                              45 +
-                            ".png",
-                          iconSize: [size, size],
-                        })
-                      }
-                    ></Marker>
-                  </MapContainer>
-                ) : null}
-              </div>
-            </div>
-            <div className="col-md-6 p-6">
-              <StatusAlert
-                onGround={liveData?.states[0][8]}
-                callSign={liveData?.states[0][1]}
+    <div className="bg-gray-900 min-h-screen">
+      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mt-24 text-center">
+          <h1 className="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
+            <StatusAlert
+              onGround={liveData?.states[0][8]}
+              callSign={liveData?.states[0][1]}
+            />
+          </h1>
+          {/* add an image and center it  */}
+          <div className="mt-6 flex justify-center">
+            <div className="inline-flex rounded-md shadow">
+              <img
+                src="https://cdn.jetphotos.com/400/6/848871_1677779291.jpg"
+                alt="Aircraft"
+                className=""
               />
-              <h4>Flight information</h4>
-              <table className="flight-route alert-secondary">
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong>From</strong>
-                    </td>
-                    <td>
-                      <strong>To</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      {originData.airport}
-                      <br />
-                      <img
-                        className="country-flag"
-                        crossOrigin="anonymous"
-                        src={`https://flagsapi.com/${originData?.country_code}/flat/64.png`}
-                        onError={({ currentTarget }) => {
-                          currentTarget.onerror = null;
-                          currentTarget.src = "./../flagtemp.png";
-                        }}
-                      />{" "}
-                      ({origin})
-                    </td>
-                    <td>
-                      {destinationData.airport}
-                      <br />
-                      <img
-                        className="country-flag"
-                        crossOrigin="anonymous"
-                        src={`https://flagsapi.com/${originData?.country_code}/flat/64.png`}
-                        onError={({ currentTarget }) => {
-                          currentTarget.onerror = null;
-                          currentTarget.src = "./../flagtemp.png";
-                        }}
-                      />{" "}
-                      ({destination})
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Altitude</strong>
-                    </td>
-                    <td>
-                      <strong>Ground speed</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>{Math.round(liveData?.states[0][7] * 3.2808)} feet</td>
-                    <td>
-                      {Math.round((liveData?.states[0][9] * 18) / 5)} Km/h
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div className="row mt-4">
-                <div className="col-md-6 mb-2">
-                  <h4>Plane information</h4>
-                  <p>
-                    <strong>Reg:</strong> {aircraftData?.Registration}
-                  </p>
-                  <p>
-                    <strong>Type:</strong> {aircraftData?.Manufacturer}{" "}
-                    {aircraftData?.Type}
-                  </p>
-                  <p>
-                    <strong>Airline:</strong> {aircraftData?.RegisteredOwners}
-                  </p>
-                  <p>
-                    <strong>Hex code:</strong> {aircraftData?.ModeS}
-                  </p>
-                  <p>
-                    <strong>Operator code:</strong>{" "}
-                    {aircraftData?.OperatorFlagCode}
-                  </p>
+            </div>
+          </div>
+        </div>
+        <div className="mt-16">
+          <div className="grid">
+            <div className="flex flex-col justify-between bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+              <div className="p-6">
+                <div className="mt-2 flex items-baseline">
+                  <span className="text-2xl font-semibold text-white">
+                    From {originData.airport} To {destinationData.airport}
+                  </span>
                 </div>
-                <div className="col-md-6">
-                  <img
-                    id="plane-image"
-                    src={planeImgSrc}
-                    onError={({ currentTarget }) => {
-                      currentTarget.onerror = null;
-                      currentTarget.src = "./../aircrafttemp.png";
-                    }}
-                  />
+              </div>
+              <div className="bg-gray-600 px-6 py-16">
+                <div className="bg-gray-900 text-white p-6 rounded-lg flex flex-col items-center">
+                  <div className="flex items-center justify-center mb-4"></div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm">From</p>
+                      <p className="text-xl font-bold">{origin}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm">To</p>
+                      <p className="text-xl font-bold">{destination}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Status</p>
+                      <p className="text-xl font-bold">En Route</p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Altitude</p>
+                      <p className="text-xl font-bold">
+                        {Math.round(liveData?.states[0][7] * 3.2808)} feet
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Ground Speed</p>
+                      <p className="text-xl font-bold">
+                        {Math.round((liveData?.states[0][9] * 18) / 5)} Km/h
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Registration</p>
+                      <p className="text-xl font-bold">
+                        {aircraftData?.Registration}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Airline</p>
+                      <p className="text-xl font-bold">
+                        {aircraftData?.RegisteredOwners}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Operator</p>
+                      <p className="text-xl font-bold">
+                        {aircraftData?.OperatorFlagCode}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Hex Code</p>
+                      <p className="text-xl font-bold">{aircraftData?.ModeS}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Aircraft Type</p>
+                      <p className="text-xl font-bold">
+                        {aircraftData?.Manufacturer}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <FaPlane size={24} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </header>
+      </div>
     </div>
   );
 }

@@ -5,13 +5,14 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import TypingText from "@/components/TypingText";
 import { SiMinutemailer } from "react-icons/si";
-import Modal from "@/components/contactModal";
+
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import dynamic from "next/dynamic";
 const ContactMap = dynamic(() => import("@/components/contactMap"), {
   ssr: false,
 });
+import ContactCard from "@/components/ContactCard";
 
 export default function App() {
   const particlesInit = async (main) => {
@@ -166,14 +167,15 @@ export default function App() {
         <h1 className="text-3xl md:text-6xl font-bold text-white my-6">
           <TypingText text="Let's get in touch" />
         </h1>
-        <p className="text-lg md:text-xl text-gray-300 text-center px-6 md:px-20 mb-12">
+        {/* <p className="text-lg md:text-xl text-gray-300 text-center px-6 md:px-20 mb-12">
           Got a question? Need some help? Want to tell me how much you hate my
           website? Well, lucky you, you've stumbled upon my contact page! I
           can't promise I'll respond quickly, but I can promise I'll read your
           message with great interest while sipping my coffee and judging you
           silently.
-        </p>
-        <Modal />
+        </p> */}
+        <ContactCard />
+
         {/* use the contactMap component to create a full width map */}
         <div className="w-full h-96 pt-4 z-0">
           <ContactMap />

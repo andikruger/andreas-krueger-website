@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Router from "next/router";
+import Head from "next/head";
 import Image from "next/image";
 import { FaPlane } from "react-icons/fa";
 import {
@@ -353,91 +354,99 @@ function FlightInfo({ infoSlug }) {
     size = 0;
   }
   return (
-    <div className="bg-gray-900 min-h-screen">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mt-24 text-center">
-          <h1 className="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
-            <StatusAlert
-              onGround={liveData?.states[0][8]}
-              callSign={liveData?.states[0][1]}
-            />
-          </h1>
-          {/* add an image and center it  */}
-          <div className="mt-6 flex justify-center">
-            <div className="inline-flex rounded-md shadow">
-              <img src={planeImgSrc} alt="Aircraft" className="" />
+    <>
+      <Head>
+        <title>{liveData?.states[0][1]} - Flight Tracker</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className="bg-gray-900 min-h-screen">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+          <div className="mt-24 text-center">
+            <h1 className="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
+              <StatusAlert
+                onGround={liveData?.states[0][8]}
+                callSign={liveData?.states[0][1]}
+              />
+            </h1>
+            {/* add an image and center it  */}
+            <div className="mt-6 flex justify-center">
+              <div className="inline-flex rounded-md shadow">
+                <img src={planeImgSrc} alt="Aircraft" className="" />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="mt-16">
-          <div className="grid">
-            <div className="flex flex-col justify-between bg-gray-700 rounded-lg shadow-lg overflow-hidden">
-              <div className="p-6">
-                <div className="mt-2 flex items-baseline">
-                  <span className="text-2xl font-semibold text-white">
-                    From {originData.airport} To {destinationData.airport}
-                  </span>
-                </div>
-              </div>
-              <div className="bg-gray-600 px-6 py-16">
-                <div className="bg-gray-900 text-white p-6 rounded-lg flex flex-col items-center">
-                  <div className="flex items-center justify-center mb-4"></div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm">From</p>
-                      <p className="text-xl font-bold">{origin}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm">To</p>
-                      <p className="text-xl font-bold">{destination}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Status</p>
-                      <p className="text-xl font-bold">En Route</p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Altitude</p>
-                      <p className="text-xl font-bold">
-                        {Math.round(liveData?.states[0][7] * 3.2808)} feet
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Ground Speed</p>
-                      <p className="text-xl font-bold">
-                        {Math.round((liveData?.states[0][9] * 18) / 5)} Km/h
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Registration</p>
-                      <p className="text-xl font-bold">
-                        {aircraftData?.Registration}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Airline</p>
-                      <p className="text-xl font-bold">
-                        {aircraftData?.RegisteredOwners}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Operator</p>
-                      <p className="text-xl font-bold">
-                        {aircraftData?.OperatorFlagCode}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Hex Code</p>
-                      <p className="text-xl font-bold">{aircraftData?.ModeS}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Aircraft Type</p>
-                      <p className="text-xl font-bold">
-                        {aircraftData?.Manufacturer}
-                      </p>
-                    </div>
+          <div className="mt-16">
+            <div className="grid">
+              <div className="flex flex-col justify-between bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                <div className="p-6">
+                  <div className="mt-2 flex items-baseline">
+                    <span className="text-2xl font-semibold text-white">
+                      From {originData.airport} To {destinationData.airport}
+                    </span>
                   </div>
-                  <div className="mt-4">
-                    <FaPlane size={24} />
+                </div>
+                <div className="bg-gray-600 px-6 py-16">
+                  <div className="bg-gray-900 text-white p-6 rounded-lg flex flex-col items-center">
+                    <div className="flex items-center justify-center mb-4"></div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm">From</p>
+                        <p className="text-xl font-bold">{origin}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm">To</p>
+                        <p className="text-xl font-bold">{destination}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Status</p>
+                        <p className="text-xl font-bold">En Route</p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Altitude</p>
+                        <p className="text-xl font-bold">
+                          {Math.round(liveData?.states[0][7] * 3.2808)} feet
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Ground Speed</p>
+                        <p className="text-xl font-bold">
+                          {Math.round((liveData?.states[0][9] * 18) / 5)} Km/h
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Registration</p>
+                        <p className="text-xl font-bold">
+                          {aircraftData?.Registration}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Airline</p>
+                        <p className="text-xl font-bold">
+                          {aircraftData?.RegisteredOwners}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Operator</p>
+                        <p className="text-xl font-bold">
+                          {aircraftData?.OperatorFlagCode}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Hex Code</p>
+                        <p className="text-xl font-bold">
+                          {aircraftData?.ModeS}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Aircraft Type</p>
+                        <p className="text-xl font-bold">
+                          {aircraftData?.Manufacturer}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <FaPlane size={24} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -445,7 +454,7 @@ function FlightInfo({ infoSlug }) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

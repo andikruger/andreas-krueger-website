@@ -365,11 +365,7 @@ function FlightInfo({ infoSlug }) {
           {/* add an image and center it  */}
           <div className="mt-6 flex justify-center">
             <div className="inline-flex rounded-md shadow">
-              <img
-                src="https://cdn.jetphotos.com/400/6/848871_1677779291.jpg"
-                alt="Aircraft"
-                className=""
-              />
+              <img src={planeImgSrc} alt="Aircraft" className="" />
             </div>
           </div>
         </div>

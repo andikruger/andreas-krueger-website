@@ -280,11 +280,11 @@ export default function App() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b hover:bg-gray-100 text-sm">
-                <td className="py-3 px-6 text-left whitespace-nowrap">
+              <tr className="border-b hover:bg-[#67162c] text-sm hover:text-gray-500">
+                <td className="py-3 px-6 text-left whitespace-nowrap text-white">
                   <Link href={airportInfoUrl}>{searchedAirport?.airport}</Link>
                 </td>
-                <td className="py-3 px-6 text-left whitespace-nowrap">
+                <td className="py-3 px-6 text-left whitespace-nowrap text-white">
                   {searchedAirport?.icao}
                 </td>
               </tr>

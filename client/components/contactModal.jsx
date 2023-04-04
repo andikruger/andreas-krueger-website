@@ -15,10 +15,21 @@ function Modal() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    toast.success("Message sent successfully");
+    const res = await fetch("/api/sendgrid", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    const { error } = await res.json();
+    if (error) {
+      toast.error(error);
+    } else {
+      toast.success("Message sent successfully");
+    }
   };
   return (
     <div className="relative">
@@ -54,7 +65,7 @@ function Modal() {
                       className="text-lg leading-6 font-medium text-white"
                       id="modal-headline"
                     >
-                      Send me a message (This is a demo)
+                      Send me a message
                     </h3>
                     <div className="mt-2">
                       <p className="text-sm leading-5 text-gray-500">
